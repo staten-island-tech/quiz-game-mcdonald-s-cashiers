@@ -18,11 +18,9 @@
     "url": "https://github.com/staten-island-tech/quiz-game-mcdonald-s-cashiers/issues"
   },
   "homepage": "https://github.com/staten-island-tech/quiz-game-mcdonald-s-cashiers#readme",
-  "dependencies": {
-    "parcel": "^2.0.0-beta.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "parcel": "^2.0.0-beta.2",
-    "@parcel/transformer-sass": "^2.0.0-beta.2"
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "parcel": "^2.0.0-beta.2"
   }
 }
