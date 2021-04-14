@@ -35,7 +35,7 @@ let questions = [
     choice2: "Goku",
     choice3: "A clown",
     choice4: "Rat from Ratatouille",
-    answer: 1,
+    answer: 3,
   },
 
   {
@@ -49,11 +49,11 @@ let questions = [
 
   {
     question: "What is the most popular item on the McDonalds menu?",
-    choice1: "1",
-    choice2: "2",
-    choice3: "3",
-    choice4: "4",
-    answer: 2,
+    choice1: "The Big Mac",
+    choice2: "Lord Dom's Regard",
+    choice3: "Fried Rats",
+    choice4: "The Unhappy Meal",
+    answer: 1,
   },
 ];
 
@@ -103,12 +103,13 @@ NewQuestion = () => {
 };
 
 choices.forEach((choice) => {
+  // Adds an event listener for a click and when it does, runs the if statement
   choice.addEventListener("click", (e) => {
     if (!acceptingAnswers) return;
 
     acceptingAnswers = false;
     const selectedChoice = e.target;
-    const selectedAnswer = selectedChoice["number"];
+    const selectedAnswer = selectedChoice.dataset["number"];
 
     let classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
