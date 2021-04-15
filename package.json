@@ -2,10 +2,9 @@
   "name": "quiz-game-mcdonald-s-cashiers",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build-prod": "parcel build src/index.html"
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
   },
   "repository": {
     "type": "git",

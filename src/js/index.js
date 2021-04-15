@@ -73,9 +73,14 @@ gamestart = () => {
 NewQuestion = () => {
   // If the amount of available questions is = 0, which means when no questions are left, it compiles the final scores and sends you to the end.html page.
   if (availibleQuestions.length === 0 || questionCounter > maxQuestions) {
-    localStorage.setItem("Latest Score", score);
-
-    return window.location.assign("/end.html");
+    const quitorna = window.confirm(
+      "Congrats, your score is: " + score + "\n\nWould you like to restart?"
+    );
+    if (quitorna == true) {
+      window.location.reload();
+    } else {
+      window.location.assign("index.html");
+    }
   }
 
   // If it does not exceed maxQuestions this code runs which adds 1 to question counter
@@ -105,19 +110,25 @@ NewQuestion = () => {
 choices.forEach((choice) => {
   // Adds an event listener for a click and when it does, runs the if statement
   choice.addEventListener("click", (e) => {
+    // if it does not = accepting answers, stop the function
     if (!acceptingAnswers) return;
 
     acceptingAnswers = false;
+    // Targets the event of the selection from the event listener above
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
 
+    // if true, toggle correct css, if false, toggle incorrect css (diff colors)
     let classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+    // if this is correct, it will increase the score by the amount of points alloted per question
     if (classToApply === "correct") {
       incrementScore(maxPoints);
     }
+    // Adds to the display on the page with the allotted points.
     selectedChoice.parentElement.classList.add(classToApply);
 
+    // Gives it a short time pause before the next question and remove the toggle css.
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       NewQuestion();
@@ -125,9 +136,11 @@ choices.forEach((choice) => {
   });
 });
 
+// This is the function for incrementing the score referenced earlier.
 incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
 
+// Runs the gamestart function.
 gamestart();
