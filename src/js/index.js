@@ -73,9 +73,14 @@ gamestart = () => {
 NewQuestion = () => {
   // If the amount of available questions is = 0, which means when no questions are left, it compiles the final scores and sends you to the end.html page.
   if (availibleQuestions.length === 0 || questionCounter > maxQuestions) {
-    localStorage.setItem("Latest Score", score);
-
-    return window.location.assign("/end.html");
+    const quitorna = window.confirm(
+      "Congrats, your score is: " + score + "\n\nWould you like to restart?"
+    );
+    if (quitorna == true) {
+      window.location.reload();
+    } else {
+      window.location.assign("index.html");
+    }
   }
 
   // If it does not exceed maxQuestions this code runs which adds 1 to question counter
