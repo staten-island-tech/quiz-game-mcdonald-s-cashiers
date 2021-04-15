@@ -110,19 +110,25 @@ NewQuestion = () => {
 choices.forEach((choice) => {
   // Adds an event listener for a click and when it does, runs the if statement
   choice.addEventListener("click", (e) => {
+    // if it does not = accepting answers, stop the function
     if (!acceptingAnswers) return;
 
     acceptingAnswers = false;
+    // Targets the event of the selection from the event listener above
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
 
+    // if true, toggle correct css, if false, toggle incorrect css (diff colors)
     let classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+    // if this is correct, it will increase the score by the amount of points alloted per question
     if (classToApply === "correct") {
       incrementScore(maxPoints);
     }
+    // Adds to the display on the page with the allotted points.
     selectedChoice.parentElement.classList.add(classToApply);
 
+    // Gives it a short time pause before the next question and remove the toggle css.
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       NewQuestion();
@@ -130,9 +136,11 @@ choices.forEach((choice) => {
   });
 });
 
+// This is the function for incrementing the score referenced earlier.
 incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
 
+// Runs the gamestart function.
 gamestart();
